@@ -1,4 +1,5 @@
 {
     "CMD_PREFIX": "-",
-    "DISCORD_TOKEN": "xxxxx"
+    "DISCORD_TOKEN": "discord app token",
+    "ADMIN_UID": [discord uid]
 }
