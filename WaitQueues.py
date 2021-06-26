@@ -58,16 +58,16 @@ class WaitQueues:
         self.__save__()
 
         if queueIdx == 6:
-            return '<@{}> is add to **{}**.'.format(userID, key)
+            return '<@{}> is add to **{}**'.format(userID, key)
         else:
-            return '<@{}> is waiting for **{}**.'.format(userID, key)
+            return '<@{}> is waiting for **{}**'.format(userID, key)
 
 # --------------------------------------------------------------------------------------------------
     def delete(self, queueIdx, userID, userName):
         key = self.nameList[queueIdx]
         self.queues[key] = [i for i in self.queues[key] if i[0] != userID]
         self.__save__()
-        return '<@{}> is removed from **{}**.'.format(userID, key)
+        return '<@{}> is removed from **{}**'.format(userID, key)
 
 # --------------------------------------------------------------------------------------------------
     def show(self, queueIdx):
@@ -125,10 +125,10 @@ class WaitQueues:
         key = self.nameList[5]
         if [userID, userName] in self.queues[key]:
             self.queues[key] = [i for i in self.queues[key] if i[0] != userID]
-            message = 'Your 持ち越し is removed.'            
+            message = 'Your 持ち越し is removed'            
         else:
             self.queues[key].append([userID, userName])
-            message = '{} is added to 持ち越し.'.format(userName)
+            message = '{} is added to 持ち越し'.format(userName)
         return message
 
 # --------------------------------------------------------------------------------------------------
@@ -154,11 +154,11 @@ class WaitQueues:
         key = self.nameList[queueIdx]
         self.queues[key] = []
         self.__save__()
-        return 'Queue of {} is clear!'.format(key)
+        return 'Queue of {} is cleared!'.format(key)
 
 # --------------------------------------------------------------------------------------------------
     def clearAll(self):
         self.queues = {i : [] for i in self.nameList}
         self.__save__()
-        return 'ALL queues is removed!'
+        return 'ALL queues is cleared!'
                 

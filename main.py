@@ -1,3 +1,4 @@
+import re
 import json
 import asyncio
 import discord
@@ -128,7 +129,7 @@ async def need(ctx, *args):
     aliases = ['q']
 )
 async def query(ctx, arg):
-    message = arg + '\'s UID is ' + arg[3:len(arg)-1]
+    message = arg + '\'s UID is ' + re.search('[\d]+', arg).group()
     await sendMessage(ctx, message, 5)
 
 # --------------------------------------------------------------------------------------------------
@@ -141,7 +142,7 @@ async def clear(ctx, arg):
         if  arg == 'all':
             message = queue.clearAll()
         elif arg[0] == '<':
-            message = queue.clearUser(int(arg[3:len(arg)-1]))
+            message = queue.clearUser(int(re.search('[\d]+', arg).group()))
         elif int(arg) <= len(queue.nameList):
             message = queue.clearQueue(int(arg) - 1)
     else:
@@ -150,11 +151,17 @@ async def clear(ctx, arg):
 
 # --------------------------------------------------------------------------------------------------
 async def sendMessage(ctx, message, deleteMessageInSecond = None):
+    command = ctx.message
     handle = await ctx.channel.send(message)
     if deleteMessageInSecond != None:
-        await asyncio.sleep(deleteMessageInSecond)
-        await ctx.message.delete()
+        await asyncio.sleep(deleteMessageInSecond)        
         await handle.delete()
+        try:
+            await command.delete()            
+        except:
+            print('404 Not Found')
+            await asyncio.sleep(5)
+            await command.delete()
         
 # --------------------------------------------------------------------------------------------------
 @bot.event
