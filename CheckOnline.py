@@ -24,14 +24,6 @@ async def checkOnline(message, bot, userForCheck):
     while currentTime - startTime < TIME:
         await asyncio.sleep(0.2)
         if time.time() - currentTime > 1:
-            currentTime =  time.time()
-            timer = int(currentTime - startTime)
-
-            # Update embed
-            pannel.clear_fields()
-            pannel.add_field(name = uName, value = 'Please press ⭕ in ' + str(max(TIME - timer, 0)) + ' s', inline = False)
-            await accept_decline.edit(embed = pannel)
-
             # Check if user press reaction
             if checkPass:
                 break
@@ -41,6 +33,13 @@ async def checkOnline(message, bot, userForCheck):
                     if user.id == uID:
                         checkPass = True
                         break
+
+            # Update embed
+            currentTime =  time.time()
+            timer = int(currentTime - startTime)
+            pannel.clear_fields()
+            pannel.add_field(name = uName, value = 'Please press ⭕ in ' + str(max(TIME - timer, 0)) + ' s', inline = False)
+            await accept_decline.edit(embed = pannel)           
         
         
 
