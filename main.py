@@ -67,14 +67,6 @@ comm = CommClear(bot, slash, DISCORD_TOKEN, APP_ID, guildID)
 comm.addListener(ADMIN_UID)
 
 # --------------------------------------------------------------------------------------------------
-@bot.command(
-    hidden = True,
-    aliases = ['q']
-)
-async def query(ctx, arg):
-    print(arg)
-
-# --------------------------------------------------------------------------------------------------
 @bot.event
 async def on_ready():
     print('Logged in as')

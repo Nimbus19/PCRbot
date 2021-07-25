@@ -67,14 +67,13 @@ class CommRemove(BaseCommand):
     async def execute(self, ctx, *args):   
         queue = self.getQueue(ctx.channel.id)
         userID = ctx.author.id
-        userName = ctx.author.display_name
 
         if len(args) == 1:
             bossID = int(args[0]) - 1
-            message = queue.delete(bossID, userID, userName)
+            message = queue.delete(bossID, userID)
         else:
             for bossID in range(5):
-                queue.delete(bossID, userID, userName)
+                queue.delete(bossID, userID)
             message = '<@{}> is removed from **ALL**.'.format(userID)
             
         await ctx.send(content=message, delete_after=5)
