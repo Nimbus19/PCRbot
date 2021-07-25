@@ -5,8 +5,8 @@ import time
 TIME = 300
 
 async def checkOnline(message, bot, userForCheck):
-    uID = userForCheck[0]
-    uName = userForCheck[1]
+    uID = userForCheck['ID']
+    uName = userForCheck['Name']
     channel = bot.get_channel(message.channel.id)
     
     pannel = discord.Embed(title = '🔥**Online Check for {}**🔥'.format(uName), description = '', color = 0x00ff00)
