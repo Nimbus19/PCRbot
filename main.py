@@ -1,10 +1,10 @@
 import json as JSON
 import asyncio
 import discord
+from misc.keep_alive import keep_alive
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
 
-import keep_alive
 
 try:
     from replit import db
@@ -77,5 +77,5 @@ async def on_ready():
 
 # --------------------------------------------------------------------------------------------------
 if replit_db:
-    keep_alive.keep_alive()
+    keep_alive()
 bot.run(DISCORD_TOKEN)

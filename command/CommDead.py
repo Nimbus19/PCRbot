@@ -1,6 +1,6 @@
-from WaitQueues import WaitQueues
+from misc.WaitQueues import WaitQueues
 from command.BaseCommand import BaseCommand
-from CheckOnline import *
+from misc.CheckOnline import *
 
 class CommDead(BaseCommand):
     name="dead"

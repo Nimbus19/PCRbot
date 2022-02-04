@@ -1,4 +1,4 @@
-from WaitQueues import WaitQueues
+from misc.WaitQueues import WaitQueues
 from command.BaseCommand import BaseCommand
 
 
