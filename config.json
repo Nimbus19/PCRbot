@@ -1,6 +1,7 @@
 {
     "CMD_PREFIX": "-",
-    "DISCORD_TOKEN": "discord bot token", 
-    "APP_ID": 12345, //Application ID of the bot
+    "DISCORD_TOKEN": "discord bot token",  // Token of bot, you can save it to environment variable rather than write here
+    "GUILD_ID": 12345,  // Guild ID of your server
+    "APP_ID": 12345, // Application ID of the bot
     "ADMIN_UID": [12345, 67890] // Allow user to use `-clear` command
 }

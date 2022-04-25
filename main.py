@@ -1,3 +1,4 @@
+import os
 import json as JSON
 import asyncio
 import discord
@@ -16,14 +17,18 @@ except ImportError:
 with open('config.json','r', encoding="utf8") as f:
     config = JSON.load(f)
     CMD_PREFIX = config['CMD_PREFIX']
-    DISCORD_TOKEN = config['DISCORD_TOKEN']
     APP_ID = config['APP_ID']
+    GUILD_ID = config['GUILD_ID']
     ADMIN_UID = config['ADMIN_UID']
+    if os.getenv("DISCORD_TOKEN"):
+      DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+    else:
+      DISCORD_TOKEN = config['DISCORD_TOKEN']
+      
 
 # Create bot object of discord
 bot = commands.Bot(command_prefix = CMD_PREFIX, intents=discord.Intents.all())
 slash = SlashCommand(bot)
-guildID = 626301417325461515
 
 # --------------------------------------------------------------------------------------------------
 @bot.event
@@ -39,31 +44,31 @@ async def on_slash_command(ctx: SlashContext):
         
 # --------------------------------------------------------------------------------------------------
 from command.CommShow import CommShow
-comm = CommShow(bot, slash, DISCORD_TOKEN, APP_ID, guildID)
+comm = CommShow(bot, slash, DISCORD_TOKEN, APP_ID, GUILD_ID)
 comm.addListener()
 
 from command.CommWait import CommWait
-comm = CommWait(bot, slash, DISCORD_TOKEN, APP_ID, guildID)
+comm = CommWait(bot, slash, DISCORD_TOKEN, APP_ID, GUILD_ID)
 comm.addListener()
 
 from command.CommRemove import CommRemove
-comm = CommRemove(bot, slash, DISCORD_TOKEN, APP_ID, guildID)
+comm = CommRemove(bot, slash, DISCORD_TOKEN, APP_ID, GUILD_ID)
 comm.addListener()
 
 from command.CommDead import CommDead
-comm = CommDead(bot, slash, DISCORD_TOKEN, APP_ID, guildID)
+comm = CommDead(bot, slash, DISCORD_TOKEN, APP_ID, GUILD_ID)
 comm.addListener()
 
 from command.CommCarry import CommCarry
-comm = CommCarry(bot, slash, DISCORD_TOKEN, APP_ID, guildID)
+comm = CommCarry(bot, slash, DISCORD_TOKEN, APP_ID, GUILD_ID)
 comm.addListener()
 
 from command.CommNeed import CommNeed
-comm = CommNeed(bot, slash, DISCORD_TOKEN, APP_ID, guildID)
+comm = CommNeed(bot, slash, DISCORD_TOKEN, APP_ID, GUILD_ID)
 comm.addListener()
 
 from command.CommClear import CommClear
-comm = CommClear(bot, slash, DISCORD_TOKEN, APP_ID, guildID)
+comm = CommClear(bot, slash, DISCORD_TOKEN, APP_ID, GUILD_ID)
 comm.addListener(ADMIN_UID)
 
 # --------------------------------------------------------------------------------------------------
