@@ -4,8 +4,8 @@ from misc.CheckOnline import *
 
 class CommDead(BaseCommand):
     name="dead"
-    help="Report this boss is dead, and notify people who is waiting for next.\n\n-dead [boss number] \n-d [boss number]"
-    brief="Report this boss is dead."
+    help="Check the highest priority is dead or not.\n\n-dead [boss number] \n-d [boss number]"
+    brief="Check the highest priority is dead or not."
     aliases = ['d']
     slashSetting = {
         "name": name,

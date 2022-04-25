@@ -107,30 +107,19 @@ class WaitQueues:
 
 # --------------------------------------------------------------------------------------------------
     def notifyNext(self, queueIdx):
-        boss = self.queuesName[queueIdx]
-        nextBoss = (queueIdx + 1 ) % 5
-        next2Boss = (queueIdx + 2 ) % 5
-        message = "{} is dead.\n".format(boss)
+        message = ""
 
-        # Notify next boss"s queue
-        users = self.__gettUsers__(nextBoss)
+        # Notify next one in the queue
+        users = self.__gettUsers__(queueIdx, 1)
         if len(users) > 0:
-            message += "Ready to hit **{}** ".format(self.queuesName[nextBoss])
+            message += "Are you ready to hit **{}**? -> ".format(self.queuesName[queueIdx])
             for i in users:
                 message += "<@{}>".format(i["ID"])
             message += "\n"
             hightest = users[0]
         else:
-            message += "Nobody is waiting for **{}**\n".format(self.queuesName[nextBoss])
+            message += "Nobody is waiting for **{}**\n".format(self.queuesName[queueIdx])
             hightest = None        
-
-        # Notify next 2 boss"s queue
-        users = self.__gettUsers__(next2Boss, 1)
-        if len(users) > 0:
-            message += "Prepare your party for **{}** ".format(self.queuesName[next2Boss])
-            for i in users:
-                message += "<@{}>".format(i["ID"])
-            message += "\n"
 
         return [message, hightest]
 
