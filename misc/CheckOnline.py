@@ -23,7 +23,7 @@ async def checkOnline(message, bot, userForCheck):
     currentTime =  startTime
     while currentTime - startTime < TIME:
         await asyncio.sleep(0.2)
-        if time.time() - currentTime > 1:
+        if time.time() - currentTime > 5:
             # Check if user press reaction
             if checkPass:
                 break
