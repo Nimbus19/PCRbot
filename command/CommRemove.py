@@ -72,7 +72,7 @@ class CommRemove(BaseCommand):
             bossID = int(args[0]) - 1
             message = queue.delete(bossID, userID)
         else:
-            for bossID in range(5):
+            for bossID in range(7):
                 queue.delete(bossID, userID)
             message = '<@{}> is removed from **ALL**.'.format(userID)
             

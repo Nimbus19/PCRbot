@@ -46,9 +46,9 @@ async def checkOnline(message, bot, userForCheck):
     # Update Embaded
     pannel.clear_fields()
     if checkPass:                
-        pannel.add_field(name = 'OK', value = '⭕')
+        pannel.add_field(name = uName + ' is online now', value = '⭕')
     else:
-        pannel.add_field(name = 'Fail', value = '❌')
+        pannel.add_field(name = uName + ' is afk now', value = '❌')
     await accept_decline.edit(embed = pannel)    
     await accept_decline.clear_reactions()
 
